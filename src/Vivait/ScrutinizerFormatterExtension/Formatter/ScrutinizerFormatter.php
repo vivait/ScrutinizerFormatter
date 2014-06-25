@@ -69,7 +69,9 @@ class ScrutinizerFormatter implements EventSubscriberInterface
 
     public function afterSuite(SuiteEvent $event)
     {
-        $this->io->write(json_encode($this->json));
+        if ($this->json) {
+            $this->io->write(json_encode($this->json));
+        }
     }
 
     protected function getException(ExampleEvent $event, $depth = null)

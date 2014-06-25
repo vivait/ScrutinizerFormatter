@@ -8,10 +8,9 @@
 			"email": "lewis@vivait.co.uk"
 		}
 	],
-	"minimum-stability": "stable",
 	"require": {
 		"php": ">=5.3",
-		"phpspec/phpspec": "*"
+		"phpspec/phpspec": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {

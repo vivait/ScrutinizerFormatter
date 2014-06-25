@@ -61,7 +61,7 @@ class ScrutinizerFormatter implements EventSubscriberInterface
                 $this->json['comments'][] = [
                   'line' => $this->getExceptionExamplePosition($event->getException()),
                   'id'   => $title,
-                  'message' => $this->getException($event)
+                  'message' => $title .' - '. $this->getException($event)
                 ];
                 break;
         }

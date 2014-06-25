@@ -2,6 +2,7 @@
 
 namespace Vivait\ScrutinizerFormatterExtension\Formatter;
 
+use PhpSpec\Exception\Exception;
 use PhpSpec\IO\IOInterface as IO;
 use PhpSpec\Formatter\Presenter\PresenterInterface;
 use PhpSpec\Listener\StatisticsCollector;
@@ -49,7 +50,6 @@ class ScrutinizerFormatter implements EventSubscriberInterface
 
     public function afterExample(ExampleEvent $event)
     {
-        $line  = $event->getExample()->getFunctionReflection()->getStartLine();
         $title = preg_replace('/^it /', '', $event->getExample()->getTitle());
 
         switch ($event->getResult()) {
@@ -59,7 +59,7 @@ class ScrutinizerFormatter implements EventSubscriberInterface
             case ExampleEvent::BROKEN:
             case ExampleEvent::PENDING:
                 $this->json['comments'][] = [
-                  'line' => $line,
+                  'line' => $this->getExceptionExamplePosition($event->getException()),
                   'id'   => $title,
                   'message' => $this->getException($event)
                 ];
@@ -70,8 +70,29 @@ class ScrutinizerFormatter implements EventSubscriberInterface
     public function afterSuite(SuiteEvent $event)
     {
         if ($this->json) {
-            $this->io->write(json_encode($this->json));
+            $this->io->writeln(json_encode($this->json));
         }
+    }
+
+    /**
+     * @param Exception $exception
+     *
+     * @return array
+     */
+    protected function getExceptionExamplePosition(Exception $exception)
+    {
+        $refl = $exception->getCause();
+        foreach ($exception->getTrace() as $call) {
+            if (!isset($call['file'])) {
+                continue;
+            }
+
+            if (!empty($refl) && $refl->getFilename() === $call['file']) {
+                return array($call['file'], $call['line']);
+            }
+        }
+
+        return array($exception->getFile(), $exception->getLine());
     }
 
     protected function getException(ExampleEvent $event, $depth = null)

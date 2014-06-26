@@ -31,10 +31,10 @@ class ResourceLoader extends \PhpSpec\Loader\ResourceLoader {
     {
         foreach ($this->manager->locateResources($locator) as $resource) {
             if ($resource->getSpecFilename() == $locator){
-                return new Suite;
+                return parent::load($locator, $line);
             }
         }
 
-        return parent::load($locator, $line);
+        return new Suite;
     }
 }

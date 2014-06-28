@@ -1,20 +1,22 @@
 {
-	"name": "vivait/scrutinizer-formatter",
-	"description": "Creates a formatter for PHPSpec to display failed scenarios against files in Scrutinizer",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Lewis Wright",
-			"email": "lewis@vivait.co.uk"
-		}
-	],
-	"require": {
-		"php": ">=5.3",
-		"phpspec/phpspec": "dev-master"
-	},
-	"autoload": {
-		"psr-0": {
-			"Vivait\\ScrutinizerFormatterExtension\\": "src/"
-		}
-	}
+    "name": "vivait/scrutinizer-formatter",
+    "description": "Creates a formatter for PHPSpec to display failed scenarios against files in Scrutinizer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lewis Wright",
+            "email": "lewis@vivait.co.uk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.3",
+        "phpspec/phpspec": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Vivait\\ScrutinizerFormatterExtension\\": "src/"
+        }
+    }
 }

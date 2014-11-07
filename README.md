@@ -16,3 +16,10 @@ tools:
             scope: file
             command: vendor/phpspec/phpspec/bin/phpspec run %pathname% -f scrutinizer --no-code-generation || true
 ```
+
+Add the following to your phpspec.yml:
+
+```
+extensions:
+    - Vivait\ScrutinizerFormatterExtension\Extension
+```

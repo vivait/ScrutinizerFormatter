@@ -2,14 +2,13 @@
 
 namespace Vivait\ScrutinizerFormatterExtension\Formatter;
 
-use PhpSpec\Exception\Exception;
-use PhpSpec\IO\IOInterface as IO;
-use PhpSpec\Formatter\Presenter\PresenterInterface;
-use PhpSpec\Listener\StatisticsCollector;
-
-use PhpSpec\Event\SuiteEvent;
-use PhpSpec\Event\SpecificationEvent;
 use PhpSpec\Event\ExampleEvent;
+use PhpSpec\Event\SpecificationEvent;
+use PhpSpec\Event\SuiteEvent;
+use PhpSpec\Exception\Exception;
+use PhpSpec\Formatter\Presenter\PresenterInterface;
+use PhpSpec\IO\IOInterface as IO;
+use PhpSpec\Listener\StatisticsCollector;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ScrutinizerFormatter implements EventSubscriberInterface
